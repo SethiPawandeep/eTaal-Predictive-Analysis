@@ -1,0 +1,8 @@
+# Environment
+etaal
+
+# Data
+*.xlsx
+
+# ipynb checkpoints
+.ipynb_checkpoints/
