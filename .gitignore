@@ -3,9 +3,13 @@ etaal
 
 # Data
 *.xlsx
+*.csv
 
 # ipynb checkpoints
 .ipynb_checkpoints/
 
 # Python cache
 __pycache__/
+
+# Test
+cmds.txt
