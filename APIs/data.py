@@ -1,7 +1,6 @@
 import pandas as pd
 
 def get_data(project_name, standard_service):
-	print('Get data function')
 	mmp_data = pd.read_excel('../MMP_transactionDatewise.xlsx')
 	mmp_data = mmp_data[:-19]
 	data = 1
@@ -13,10 +12,7 @@ def get_data(project_name, standard_service):
 				data_dict['Count'].append(mmp_data['TotalCount'][i])
 			else:
 				data_dict['Count'][-1] += mmp_data['TotalCount'][i]
-	print('Dictonary created')
 	data = pd.DataFrame(data=data_dict)
 	data.index = data.Date
 	data.drop('Date', axis=1, inplace=True)
-	print('get data done')
-	print(data.head())
 	return data

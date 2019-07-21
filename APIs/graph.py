@@ -3,7 +3,6 @@ import io
 import base64
 from data import get_data
 
-
 def build_graph(data):
 	img = io.BytesIO()
 	plt.plot(data)
@@ -13,7 +12,6 @@ def build_graph(data):
 	plt.close()
 	print('Plotted')
 	return 'data:image/png;base64,{}'.format(graph_url)
-
 
 def make_graph(project_name, standard_service):
 	service_data = get_data(project_name, standard_service)
