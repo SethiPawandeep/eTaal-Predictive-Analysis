@@ -6,3 +6,6 @@ etaal
 
 # ipynb checkpoints
 .ipynb_checkpoints/
+
+# Python cache
+__pycache__/
