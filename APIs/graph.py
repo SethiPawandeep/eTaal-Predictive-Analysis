@@ -10,7 +10,6 @@ def build_graph(data):
 	img.seek(0)
 	graph_url = base64.b64encode(img.getvalue()).decode()
 	plt.close()
-	print('Plotted')
 	return 'data:image/png;base64,{}'.format(graph_url)
 
 def make_graph(project_name, standard_service):

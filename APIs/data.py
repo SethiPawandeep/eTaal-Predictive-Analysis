@@ -33,7 +33,7 @@ def get_data(project_name, standard_service):
 		passwd=connection['passwd'],
 		database=connection['database'])
 	mycursor = mydb.cursor()
-	query = 'SELECT std_date, sum(total_count) from MMP_transactionDatewise where project_name="' + project_name + '" and standard_service="' + standard_service + '" group by std_date'
+	query = "SELECT std_date, sum(total_count) from MMP_transactionDatewise where project_name='" + project_name + "' and standard_service='" + standard_service + "' group by std_date"
 	mycursor.execute(query)
 	result = mycursor.fetchall()
 	result = [(i[0], int(i[1])) for i in result]
