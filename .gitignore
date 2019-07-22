@@ -13,3 +13,6 @@ __pycache__/
 
 # Test
 cmds.txt
+
+# Configuration file
+config.yaml
