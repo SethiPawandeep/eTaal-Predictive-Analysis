@@ -23,7 +23,7 @@ import mysql.connector
 import pandas as pd
 import yaml
 
-def get_data(project_name, standard_service):
+def get_data_for_service(project_name, standard_service):
 	with open("config.yaml", 'r') as ymlfile:
 		cfg = yaml.load(ymlfile)
 	connection = cfg['mysql']
@@ -34,6 +34,25 @@ def get_data(project_name, standard_service):
 		database=connection['database'])
 	mycursor = mydb.cursor()
 	query = "SELECT std_date, sum(total_count) from MMP_transactionDatewise where project_name='" + project_name + "' and standard_service='" + standard_service + "' group by std_date"
+	mycursor.execute(query)
+	result = mycursor.fetchall()
+	result = [(i[0], int(i[1])) for i in result]
+	data = pd.DataFrame(result, columns=['Date', 'Total Count'])
+	data.index = data.Date
+	data.drop('Date', axis=1, inplace=True)
+	return data
+
+def get_data_for_state(state):
+	with open("config.yaml", 'r') as ymlfile:
+		cfg = yaml.load(ymlfile)
+	connection = cfg['mysql']
+	mydb = mysql.connector.connect(
+		host=connection['host'],
+		user=connection['user'],
+		passwd=connection['passwd'],
+		database=connection['database'])
+	mycursor = mydb.cursor()
+	query = "SELECT std_date, sum(total_count) from MMP_transactionDatewise where state='" + state + "' group by std_date"
 	mycursor.execute(query)
 	result = mycursor.fetchall()
 	result = [(i[0], int(i[1])) for i in result]
