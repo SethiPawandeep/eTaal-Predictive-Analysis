@@ -22,6 +22,7 @@
 import mysql.connector
 import pandas as pd
 import yaml
+from predictions import make_predictions
 
 def get_data_for_service(project_name, standard_service):
 	with open("config.yaml", 'r') as ymlfile:
@@ -40,7 +41,8 @@ def get_data_for_service(project_name, standard_service):
 	data = pd.DataFrame(result, columns=['Date', 'Total Count'])
 	data.index = data.Date
 	data.drop('Date', axis=1, inplace=True)
-	return data
+	predictions = make_predictions(data)
+	return data, predictions
 
 def get_data_for_state(state):
 	with open("config.yaml", 'r') as ymlfile:
@@ -59,4 +61,5 @@ def get_data_for_state(state):
 	data = pd.DataFrame(result, columns=['Date', 'Total Count'])
 	data.index = data.Date
 	data.drop('Date', axis=1, inplace=True)
-	return data
+	predictions = make_predictions(data)
+	return data, predictions
