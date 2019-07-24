@@ -5,8 +5,11 @@ from data import get_data_for_service, get_data_for_state
 
 def build_graph(data, predictions):
 	img = io.BytesIO()
+	plt.figure(figsize=(13, 6))
 	plt.plot(data)
-	plt.plot(predictions['Predictions'])
+	plt.plot(predictions['Predictions'], color='red')
+	plt.xlabel('Year')
+	plt.ylabel('Total Count')
 	plt.savefig(img, format='png')
 	img.seek(0)
 	graph_url = base64.b64encode(img.getvalue()).decode()

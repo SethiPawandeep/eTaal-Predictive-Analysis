@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 def make_predictions(data):
 	# if os.path.exists('models/{0}_{1}.sav'.format(project_name, standard_service)):
-	# 	# Load model and predict
+	# 	# TODO Load model and predict
 	# 	return
 
 	new_data = pd.DataFrame(index=range(0,len(data)),columns=['Date', 'Total Count'])
@@ -23,6 +23,9 @@ def make_predictions(data):
 
 	model = LinearRegression()
 	model.fit(x_train, y_train)
+	
+	# TODO Save model
+
 	test = pd.date_range(data.index[-1], data.index[-1] + timedelta(days=365), freq='D')
 	test = pd.DataFrame(test, columns=['Date'])
 	test_date = pd.date_range(data.index[-1], data.index[-1] + timedelta(days=365), freq='D')
@@ -33,5 +36,5 @@ def make_predictions(data):
 	predictions = model.predict(test)
 	test['Predictions'] = predictions
 	test.index = test_date.Date
-	print("Done")
+	
 	return test
